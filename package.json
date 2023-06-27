@@ -1,0 +1,16 @@
+{
+  "name": "arquibancada-app-api",
+  "version": "1.0.0",
+  "description": "Projeto pessoal com objetivo de registrar minhas estatísticas quando presente na Neo Química Arena e para portfólio de backend com NodeJS.",
+  "main": "index.ts",
+  "repository": "git@github.com:erykscarabellodias/arquibancada-app-api.git",
+  "author": "erykscarabellodias <erykscarabello97@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.43.0",
+    "typescript": "^5.1.5"
+  }
+}
