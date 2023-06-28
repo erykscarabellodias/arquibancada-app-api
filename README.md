@@ -8,4 +8,4 @@ Projeto pessoal com objetivo de registrar minhas estatísticas quando presente n
 
 *`NodeJS` v18.12.1
 *`express` v4.18.2 
-*`typeorm` v4.18.2
+*`typeorm` v0.3.17
