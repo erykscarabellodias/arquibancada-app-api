@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node-dev --inspect=0.0.0.0:7001 --ignore-watch --respawn server.ts"
+    "dev": "ts-node-dev --inspect=0.0.0.0:7001 --ignore-watch --respawn server.ts",
+    "migrate": "$ yarn ts-node-dev ./node_modules/typeorm/cli.js migration:run -d src/config/database/typeorm/data-source.ts "
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
@@ -22,7 +23,9 @@
     "typescript": "^5.1.5"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "pg": "^8.11.1",
     "typeorm": "^0.3.17"
   }
 }

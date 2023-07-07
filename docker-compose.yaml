@@ -7,8 +7,8 @@ services:
     ports: 
       - 5432:5432
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=root@arquibancada-app
+      - POSTGRES_USER=pg
+      - POSTGRES_PASSWORD=pg@arquibancada-app
       - POSTGRES_DB=arquibancada-app
     volumes:
       - pg:/var/lib/postgresql
