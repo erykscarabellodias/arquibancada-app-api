@@ -8,11 +8,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node-dev --inspect=0.0.0.0:7001 --ignore-watch --respawn server.ts",
+    "dev": "ts-node-dev --inspect=0.0.0.0:7001 --ignore-watch --respawn ./src/server.ts",
     "migrate": "$ yarn ts-node-dev ./node_modules/typeorm/cli.js migration:run -d src/config/database/typeorm/data-source.ts "
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.17",
+    "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.43.0",
@@ -23,9 +25,14 @@
     "typescript": "^5.1.5"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "pg": "^8.11.1",
-    "typeorm": "^0.3.17"
+    "typeorm": "^0.3.17",
+    "uuid": "^9.0.0"
   }
 }

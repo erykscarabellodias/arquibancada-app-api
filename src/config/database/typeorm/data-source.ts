@@ -1,9 +1,8 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
+import { User } from "../../../modules/accounts/entities/User";
 
-console.log(process.env.DB_HOST);
-
-export const AppDataSource = new DataSource({
+export const appDataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
@@ -12,7 +11,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: false,
   logging: true,
-  entities: [],
+  entities: [User],
   subscribers: [],
   migrations: ["./src/shared/typeorm/migrations/*.ts"],
 });
