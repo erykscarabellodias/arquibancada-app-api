@@ -7,6 +7,7 @@ import ClassValidatorValidationError from "../../../../shared/errors/classValida
 import { ApplicationError } from "../../../../shared/errors/ApplicationError";
 import { UserOutputMapper } from "./dto/UserOutputMapper";
 import { UserOutputDto } from "./dto/UserOutputDto";
+import { CreateUserError } from "./errors/CreateUserError";
 
 export class CreateUserUseCase {
   private repository: IUserRepository;
@@ -29,8 +30,7 @@ export class CreateUserUseCase {
     const userAlreadyExists = await this.repository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new ApplicationError(
-        400,
+      throw new CreateUserError(
         "Já existe um usuário cadastrado com este email"
       );
     }
