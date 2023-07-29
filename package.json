@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --inspect=0.0.0.0:7001 --ignore-watch --respawn ./src/server.ts",
     "test": "ENV=test jest",
     "test:coverage": "ENV=test jest --coverage=true",
-    "migrate": "$ yarn ts-node-dev ./node_modules/typeorm/cli.js migration:run -d src/config/database/typeorm/data-source.ts "
+    "migrate": "yarn ts-node-dev ./node_modules/typeorm/cli.js migration:run -d src/config/database/typeorm/data-source.ts "
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
