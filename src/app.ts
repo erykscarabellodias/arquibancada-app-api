@@ -1,3 +1,4 @@
+import "./shared/infra/configureEnvironment";
 import "express-async-errors";
 import express from "express";
 import { routes } from "./http/routes";
@@ -6,7 +7,9 @@ import { appDataSource } from "./config/database/typeorm/data-source";
 
 const app = express();
 
-appDataSource.initialize();
+if (process.env.ENV !== "test") {
+  appDataSource.initialize();
+}
 
 app.use(express.json());
 

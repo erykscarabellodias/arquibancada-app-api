@@ -13,6 +13,18 @@ services:
     volumes:
       - pg:/var/lib/postgresql
 
+  db-test:
+    image: postgres
+    ports: 
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test@arquibancadaapp
+      - POSTGRES_DB=arquibancada-app
+    volumes:
+    - pg-test:/var/lib/postgresqltest
 volumes:
   pg:
+    driver: local
+  pg-test:
     driver: local

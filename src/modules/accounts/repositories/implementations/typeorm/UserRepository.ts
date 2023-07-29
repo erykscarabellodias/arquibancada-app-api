@@ -1,4 +1,4 @@
-import { DataSource, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { appDataSource } from "../../../../../config/database/typeorm/data-source";
 import { User } from "../../../entities/User";
 import { CreateUserDto } from "../../../useCases/createUser/dto/CreateUserDto";
@@ -9,9 +9,7 @@ export class UserRepository implements IUserRepository {
   private repository: Repository<User>;
 
   constructor() {
-    if (process.env.ENV != "test") {
-      this.repository = appDataSource.getRepository(User);
-    }
+    this.repository = appDataSource.getRepository(User);
   }
 
   public async createUser({ name, email, password }: CreateUserDto) {
