@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "ts-node-dev --inspect=0.0.0.0:7001 --ignore-watch --respawn ./src/server.ts",
     "test": "env ENV=test jest --runInBand --detectOpenHandles",
-    "test:coverage": "ENV=test jest --coverage=true",
+    "test:coverage": "env ENV=test jest --runInBand --coverage=true",
     "migrate": "ts-node-dev -r dotenv/config ./node_modules/typeorm/cli.js migration:run -d src/config/database/typeorm/data-source.ts "
   },
   "devDependencies": {
