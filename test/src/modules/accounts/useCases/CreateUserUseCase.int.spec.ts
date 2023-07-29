@@ -28,6 +28,19 @@ describe("create user integration test suit", () => {
     expect(response.body).toHaveProperty("email");
   });
 
+  it("should not be possible to create a user with an email already registered", async () => {
+    const response = await request(app).post("/auth/create-account").send({
+      name: "new user",
+      email: "newuser@gmail.com",
+      password: "VeryStr0ngP@assword!",
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toBe(
+      "Já existe um usuário cadastrado com este email"
+    );
+  });
+
   it("should not be able to create an user without body request", async () => {
     const response = await request(app).post("/auth/create-account").send();
 
