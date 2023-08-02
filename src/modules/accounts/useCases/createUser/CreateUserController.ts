@@ -9,7 +9,7 @@ export class CreateUserController {
     this.useCase = useCase;
   }
 
-  public async handle(req: Request, res: Response) {
+  public async handle(req: Request, res: Response): Promise<Response> {
     const createUserDto: CreateUserDto = req.body;
 
     const user = await this.useCase.execute(createUserDto);
