@@ -3,7 +3,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from "class-validator";
-import { PasswordService } from "./PasswordService";
+import { PasswordValidationService } from "./PasswordValidationService";
 
 @ValidatorConstraint({ name: "securePassword", async: true })
 export class SecurePasswordValidator implements ValidatorConstraintInterface {
@@ -12,11 +12,11 @@ export class SecurePasswordValidator implements ValidatorConstraintInterface {
     validationArguments?: ValidationArguments | undefined
   ): boolean | Promise<boolean> {
     if (
-      !PasswordService.verifyMinimumSizeOfPassword(password) ||
-      !PasswordService.verifyNumberInPassword(password) ||
-      !PasswordService.verifyUppercaseLetter(password) ||
-      !PasswordService.verifyLowercaseLetter(password) ||
-      !PasswordService.verifySpecialCharacter(password)
+      !PasswordValidationService.verifyMinimumSizeOfPassword(password) ||
+      !PasswordValidationService.verifyNumberInPassword(password) ||
+      !PasswordValidationService.verifyUppercaseLetter(password) ||
+      !PasswordValidationService.verifyLowercaseLetter(password) ||
+      !PasswordValidationService.verifySpecialCharacter(password)
     ) {
       return false;
     }
