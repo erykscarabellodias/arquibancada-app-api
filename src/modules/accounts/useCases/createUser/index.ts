@@ -1,4 +1,3 @@
-import { appDataSource } from "../../../../config/database/typeorm/data-source";
 import { UserRepository } from "../../repositories/implementations/typeorm/UserRepository";
 import { CreateUserController } from "./CreateUserController";
 import { CreateUserUseCase } from "./CreateUserUseCase";
