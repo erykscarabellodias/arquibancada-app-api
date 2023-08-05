@@ -4,27 +4,26 @@ import { CreateUserUseCase } from "../../../../../../src/modules/accounts/useCas
 import { CreateUserDto } from "../../../../../../src/modules/accounts/useCases/createUser/dto/CreateUserDto";
 import { CreateUserError } from "../../../../../../src/modules/accounts/useCases/createUser/errors/CreateUserError";
 import ClassValidatorValidationError from "../../../../../../src/shared/errors/classValidator/ClassValidatorValidationError";
+import { PasswordService } from "../../../../../../src/shared/security/password/PasswordService";
+import {
+  inexistentUser,
+  returnUserMock,
+} from "../../../../../mocks/user/userMocks";
 
 let userRepository: IUserRepository;
+let passwordService: PasswordService;
 let useCase: CreateUserUseCase;
-
-const inexistentEmailMock = jest.fn().mockReturnValue(null);
-
-const returnUserMock = jest.fn().mockReturnValue({
-  id: "96f35936-afd5-4d94-8a47-dfa3ac50d46b",
-  name: "New User",
-  email: "newuser@gmail.com",
-});
 
 beforeEach(() => {
   userRepository = new UserRepository();
-  useCase = new CreateUserUseCase(userRepository);
+  passwordService = new PasswordService();
+  useCase = new CreateUserUseCase(userRepository, passwordService);
 });
 
 describe("create user test suit", () => {
   it("should be able to create a new user", async () => {
     userRepository.createUser = returnUserMock;
-    userRepository.findByEmail = inexistentEmailMock;
+    userRepository.findByEmail = inexistentUser;
 
     const userDto: CreateUserDto = {
       name: "New User",
