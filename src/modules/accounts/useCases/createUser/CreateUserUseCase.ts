@@ -35,7 +35,7 @@ export class CreateUserUseCase {
       );
     }
 
-    const encryptedPassword = PasswordService.encryptPassword(password);
+    const encryptedPassword = this.passwordService.encryptPassword(password);
 
     const createdUser = await this.repository.createUser({
       name,
