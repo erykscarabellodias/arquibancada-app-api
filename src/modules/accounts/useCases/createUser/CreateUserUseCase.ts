@@ -11,9 +11,14 @@ import { CreateUserError } from "./errors/CreateUserError";
 
 export class CreateUserUseCase {
   private repository: IUserRepository;
+  private passwordService: PasswordService;
 
-  constructor(userRepository: IUserRepository) {
+  constructor(
+    userRepository: IUserRepository,
+    passwordService: PasswordService
+  ) {
     this.repository = userRepository;
+    this.passwordService = passwordService;
   }
 
   async execute(createUserDto: CreateUserDto): Promise<UserOutputDto> {
