@@ -1,9 +1,9 @@
-import { IUserRepository } from "../../../../../src/modules/accounts/repositories/IUserRepository";
-import { UserRepository } from "../../../../../src/modules/accounts/repositories/implementations/typeorm/UserRepository";
-import { CreateUserUseCase } from "../../../../../src/modules/accounts/useCases/createUser/CreateUserUseCase";
-import { CreateUserDto } from "../../../../../src/modules/accounts/useCases/createUser/dto/CreateUserDto";
-import { CreateUserError } from "../../../../../src/modules/accounts/useCases/createUser/errors/CreateUserError";
-import ClassValidatorValidationError from "../../../../../src/shared/errors/classValidator/ClassValidatorValidationError";
+import { IUserRepository } from "../../../../../../src/modules/accounts/repositories/IUserRepository";
+import { UserRepository } from "../../../../../../src/modules/accounts/repositories/implementations/typeorm/UserRepository";
+import { CreateUserUseCase } from "../../../../../../src/modules/accounts/useCases/createUser/CreateUserUseCase";
+import { CreateUserDto } from "../../../../../../src/modules/accounts/useCases/createUser/dto/CreateUserDto";
+import { CreateUserError } from "../../../../../../src/modules/accounts/useCases/createUser/errors/CreateUserError";
+import ClassValidatorValidationError from "../../../../../../src/shared/errors/classValidator/ClassValidatorValidationError";
 
 let userRepository: IUserRepository;
 let useCase: CreateUserUseCase;
