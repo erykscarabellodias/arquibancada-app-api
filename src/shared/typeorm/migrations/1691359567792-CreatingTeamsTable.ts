@@ -34,6 +34,11 @@ export class CreatingTeamsTable1691359567792 implements MigrationInterface {
             isNullable: false,
             length: "100",
           },
+          {
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          },
         ],
       })
     );
