@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Team } from "../../teams/entities/Team";
 
 @Entity({ name: "users" })
 export class User {
@@ -18,4 +19,7 @@ export class User {
 
   @Column()
   created_at: Date;
+
+  @ManyToOne((team) => Team, (team) => team.id)
+  team: Team;
 }
