@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Team } from "../../teams/entities/Team";
 
 @Entity({ name: "users" })
@@ -21,5 +27,6 @@ export class User {
   created_at: Date;
 
   @ManyToOne((team) => Team, (team) => team.id)
+  @JoinColumn({ name: "team_id" })
   team: Team;
 }
