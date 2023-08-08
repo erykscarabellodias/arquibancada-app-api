@@ -3,6 +3,7 @@ import { Team } from "../../../entities/Team";
 import { appDataSource } from "../../../../../config/database/typeorm/data-source";
 import { ITeamRepository } from "../../ITeamRepository";
 import CreateTeamInputDto from "../../../useCases/createTeam/dto/CreateTeamInputDto";
+import { v4 as uuidV4 } from "uuid";
 
 export class TeamRepository implements ITeamRepository {
   private repository: Repository<Team>;
@@ -12,7 +13,8 @@ export class TeamRepository implements ITeamRepository {
   }
 
   async create(createTeamDto: CreateTeamInputDto): Promise<Team> {
-    return this.repository.create({
+    return this.repository.save({
+      id: uuidV4(),
       complete_name: createTeamDto.complete_name,
       nickname: createTeamDto.nickname,
       city: createTeamDto.city,

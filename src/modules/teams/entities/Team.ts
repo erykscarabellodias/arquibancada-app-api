@@ -1,15 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "../../accounts/entities/User";
-import { v4 as uuidV4 } from "uuid";
 
 @Entity({ name: "teams" })
 export class Team {
-  constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
-    }
-  }
-
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
