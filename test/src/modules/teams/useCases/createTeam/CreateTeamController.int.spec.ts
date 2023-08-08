@@ -4,11 +4,14 @@ import request from "supertest";
 import { prepareDatabase } from "../../../../../shared/prepareDatabase";
 import { dropDatabase } from "../../../../../shared/dropDatabase";
 import { DataSource } from "typeorm";
+import createDefaultUserAndGenerateJwtToken from "../../../../../shared/authentication/createDefaultUserAndGenerateJwtToken";
 
 let connection: DataSource;
+let tokenJwt: string;
 
 beforeAll(async () => {
   connection = await prepareDatabase();
+  tokenJwt = await createDefaultUserAndGenerateJwtToken();
 });
 
 afterAll(async () => {
@@ -24,7 +27,10 @@ describe("create team controller integration tests suit", () => {
       state: "São Paulo",
     };
 
-    const response = await request(app).post("/teams").send(newUser);
+    const response = await request(app)
+      .post("/teams")
+      .send(newUser)
+      .set({ Authorization: `Bearer ${tokenJwt}` });
 
     expect(response.status).toBe(201);
 
@@ -43,11 +49,27 @@ describe("create team controller integration tests suit", () => {
       state: "São Paulo",
     };
 
-    const response = await request(app).post("/teams").send(userAlreadyExists);
+    const response = await request(app)
+      .post("/teams")
+      .send(userAlreadyExists)
+      .set({ Authorization: `Bearer ${tokenJwt}` });
 
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message");
     expect(response.body.message).toBe("Este time já está cadastrado");
+  });
+
+  it("should not be able to create a team without authorization", async () => {
+    const userAlreadyExists: CreateTeamInputDto = {
+      complete_name: "Sport Club Corinthians Paulista",
+      nickname: "Corinthians",
+      city: "São Paulo",
+      state: "São Paulo",
+    };
+
+    const response = await request(app).post("/teams").send(userAlreadyExists);
+
+    expect(response.status).toBe(401);
   });
 
   test.each([
@@ -76,7 +98,10 @@ describe("create team controller integration tests suit", () => {
   ])(
     "should not be able to create a new team with request missing fields",
     async (params) => {
-      const response = await request(app).post("/teams").send(params);
+      const response = await request(app)
+        .post("/teams")
+        .send(params)
+        .set({ Authorization: `Bearer ${tokenJwt}` });
 
       expect(response.status).toBe(400);
     }
