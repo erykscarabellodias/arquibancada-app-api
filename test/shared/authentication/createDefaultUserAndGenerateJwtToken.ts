@@ -18,8 +18,6 @@ const createDefaultUserAndGenerateJwtToken = async (): Promise<string> => {
   const jwtTokenService = new JwtTokenService();
   const jwtToken = jwtTokenService.generate(createdUser);
 
-  console.log("na criacao: " + jwtToken);
-
   return jwtToken;
 };
 
