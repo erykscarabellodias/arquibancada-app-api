@@ -28,4 +28,12 @@ export class UserRepository implements IUserRepository {
       },
     });
   }
+
+  public async findById(id: string): Promise<User | null> {
+    return await this.repository.findOne({
+      where: {
+        id,
+      },
+    });
+  }
 }

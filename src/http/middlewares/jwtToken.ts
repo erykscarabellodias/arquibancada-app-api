@@ -1,8 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import { AuthenticationError } from "../../shared/errors/AuthenticationError";
 import { JwtTokenService } from "../../shared/security/jwtToken/JwtTokenService";
+import { UserRepository } from "../../modules/accounts/repositories/implementations/typeorm/UserRepository";
+import { UserVisibleAttributesMapper } from "../../modules/accounts/useCases/createUser/dto/UserVisibleAttributesMapper";
 
-const jwtToken = (request: Request, response: Response, next: NextFunction) => {
+const jwtToken = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
   const token = request.headers.authorization;
 
   if (!token) {
@@ -16,7 +22,16 @@ const jwtToken = (request: Request, response: Response, next: NextFunction) => {
   }
 
   const jwtTokenService = new JwtTokenService();
-  jwtTokenService.validate(tokenJwt);
+  const authenticatedUser = jwtTokenService.validate(tokenJwt);
+
+  const userRepository = new UserRepository();
+  const user = await userRepository.findById(authenticatedUser.sub);
+
+  if (!user) {
+    throw new AuthenticationError("Este usuário não existe");
+  }
+
+  request.user = UserVisibleAttributesMapper.toMap(user);
 
   next();
 };

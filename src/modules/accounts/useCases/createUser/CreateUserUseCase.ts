@@ -4,8 +4,7 @@ import { IUserRepository } from "../../repositories/IUserRepository";
 import { CreateUserDto } from "./dto/CreateUserDto";
 import { PasswordService } from "../../../../shared/security/password/PasswordService";
 import ClassValidatorValidationError from "../../../../shared/errors/classValidator/ClassValidatorValidationError";
-import { ApplicationError } from "../../../../shared/errors/ApplicationError";
-import { UserOutputMapper } from "./dto/UserOutputMapper";
+import { UserVisibleAttributesMapper } from "./dto/UserVisibleAttributesMapper";
 import { UserOutputDto } from "./dto/UserOutputDto";
 import { CreateUserError } from "./errors/CreateUserError";
 
@@ -48,6 +47,6 @@ export class CreateUserUseCase {
       password: encryptedPassword,
     });
 
-    return UserOutputMapper.toMap(createdUser);
+    return UserVisibleAttributesMapper.toMap(createdUser);
   }
 }

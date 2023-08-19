@@ -1,10 +1,5 @@
 import "../../infra/configureEnvironment";
-import {
-  JsonWebTokenError,
-  TokenExpiredError,
-  sign,
-  verify,
-} from "jsonwebtoken";
+import { TokenExpiredError, sign, verify } from "jsonwebtoken";
 import { User } from "../../../modules/accounts/entities/User";
 import { AuthenticationError } from "../../errors/AuthenticationError";
 export class JwtTokenService {
@@ -13,6 +8,7 @@ export class JwtTokenService {
       {
         sub: user.id,
         name: user.name,
+        email: user.email,
       },
       process.env.JWT_TOKEN_SECRET!,
       {
@@ -23,9 +19,20 @@ export class JwtTokenService {
     return token;
   }
 
-  public validate(token: string): void {
+  public validate(token: string): TokenPropertiesInterface {
     try {
-      verify(token, process.env.JWT_TOKEN_SECRET!);
+      const authenticaredUser = verify(
+        token,
+        process.env.JWT_TOKEN_SECRET!
+      ) as TokenPropertiesInterface;
+
+      const user: TokenPropertiesInterface = {
+        sub: authenticaredUser.sub,
+        name: authenticaredUser.name,
+        email: authenticaredUser.email,
+      };
+
+      return user;
     } catch (error) {
       if (error instanceof TokenExpiredError) {
         throw new AuthenticationError("Token expirado");
@@ -34,4 +41,10 @@ export class JwtTokenService {
       throw new AuthenticationError("Token inválido");
     }
   }
+}
+
+interface TokenPropertiesInterface {
+  sub: string;
+  name: string;
+  email: string;
 }
