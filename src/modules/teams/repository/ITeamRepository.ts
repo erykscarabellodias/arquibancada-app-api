@@ -10,4 +10,6 @@ export interface ITeamRepository {
     state: string,
     city: string
   ): Promise<boolean>;
+
+  findByName(name: string): Promise<Team[] | null>;
 }

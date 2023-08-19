@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { ILike, Repository } from "typeorm";
 import { Team } from "../../../entities/Team";
 import { appDataSource } from "../../../../../config/database/typeorm/data-source";
 import { ITeamRepository } from "../../ITeamRepository";
@@ -42,5 +42,18 @@ export class TeamRepository implements ITeamRepository {
     }
 
     return false;
+  }
+
+  async findByName(name: string): Promise<Team[] | null> {
+    const teams = await this.repository.find({
+      where: [
+        {
+          complete_name: ILike(`%${name}%`),
+        },
+        { nickname: ILike(`%${name}%`) },
+      ],
+    });
+
+    return teams;
   }
 }

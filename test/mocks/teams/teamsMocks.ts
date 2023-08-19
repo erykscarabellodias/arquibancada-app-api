@@ -6,8 +6,33 @@ const returnTeamMock = jest.fn().mockReturnValue({
   state: "São Paulo",
 });
 
+const returnTeamListMock = jest.fn().mockReturnValue([
+  {
+    id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
+    complete_name: "Sport Club Corinthians Paulista",
+    nickname: "Corinthians",
+    city: "São Paulo",
+    state: "São Paulo",
+  },
+  {
+    id: "9ac3776f-3b46-4184-8184-44dfb26dfd6c",
+    complete_name: "Coritiba Foot Ball Club",
+    nickname: "Coritiba",
+    city: "Curitiba",
+    state: "Paraná",
+  },
+]);
+
+const returnEmptyTeamList = jest.fn().mockReturnValue([]);
+
 const teamAlreadyExists = jest.fn().mockReturnValue(true);
 
 const teamNotExistsYet = jest.fn().mockReturnValue(false);
 
-export { returnTeamMock, teamAlreadyExists, teamNotExistsYet };
+export {
+  returnTeamMock,
+  teamAlreadyExists,
+  teamNotExistsYet,
+  returnTeamListMock,
+  returnEmptyTeamList,
+};
