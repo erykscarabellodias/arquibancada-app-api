@@ -28,5 +28,5 @@ export class User {
 
   @ManyToOne((team) => Team, (team) => team.id)
   @JoinColumn({ name: "team_id" })
-  team: Team;
+  team: Team | null;
 }

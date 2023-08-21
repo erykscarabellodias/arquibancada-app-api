@@ -4,6 +4,7 @@ import { User } from "../../../entities/User";
 import { CreateUserDto } from "../../../useCases/createUser/dto/CreateUserDto";
 import { IUserRepository } from "../../IUserRepository";
 import { v4 as uuidv4 } from "uuid";
+import { Team } from "../../../../teams/entities/Team";
 
 export class UserRepository implements IUserRepository {
   private repository: Repository<User>;
@@ -35,5 +36,13 @@ export class UserRepository implements IUserRepository {
         id,
       },
     });
+  }
+
+  public async chooseTeam(user: User, team: Team): Promise<User> {
+    user.team = team;
+
+    this.repository.save(user);
+
+    return user;
   }
 }

@@ -23,6 +23,8 @@ const returnTeamListMock = jest.fn().mockReturnValue([
   },
 ]);
 
+const teamDoesNotExist = jest.fn().mockReturnValue(null);
+
 const returnEmptyTeamList = jest.fn().mockReturnValue([]);
 
 const teamAlreadyExists = jest.fn().mockReturnValue(true);
@@ -35,4 +37,5 @@ export {
   teamNotExistsYet,
   returnTeamListMock,
   returnEmptyTeamList,
+  teamDoesNotExist,
 };

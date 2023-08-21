@@ -12,4 +12,6 @@ export interface ITeamRepository {
   ): Promise<boolean>;
 
   findByName(name: string): Promise<Team[] | null>;
+
+  findById(id: string): Promise<Team | null>;
 }
