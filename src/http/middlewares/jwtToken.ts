@@ -31,7 +31,7 @@ const jwtToken = async (
     throw new AuthenticationError("Este usuário não existe");
   }
 
-  request.user = UserVisibleAttributesMapper.toMap(user);
+  request.user = user;
 
   next();
 };
