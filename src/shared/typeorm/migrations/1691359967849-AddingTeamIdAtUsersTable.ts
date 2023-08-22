@@ -16,17 +16,18 @@ export class AddingTeamIdAtUsersTable1691359967849
         name: "team_id",
         isNullable: true,
         type: "uuid",
-        foreignKeyConstraintName: "FK-users-teams",
       })
     );
 
     queryRunner.createForeignKey(
       "users",
       new TableForeignKey({
+        name: "FK-users-teams",
         columnNames: ["team_id"],
-        referencedTableName: "users",
+        referencedTableName: "teams",
         referencedColumnNames: ["id"],
         onDelete: "RESTRICT",
+        onUpdate: "CASCADE",
       })
     );
   }
