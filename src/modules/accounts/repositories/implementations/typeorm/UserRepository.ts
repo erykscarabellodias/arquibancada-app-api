@@ -35,13 +35,16 @@ export class UserRepository implements IUserRepository {
       where: {
         id,
       },
+      relations: {
+        team: true,
+      },
     });
   }
 
   public async chooseTeam(user: User, team: Team): Promise<User> {
     user.team = team;
 
-    this.repository.save(user);
+    await this.repository.save(user);
 
     return user;
   }
