@@ -26,7 +26,7 @@ export default class CreateStadiumUseCase {
       throw new ClassValidatorValidationError(classValidatorValidationErrors);
     }
 
-    const stadiumAlreadyExists = await this.repository.findByName(name);
+    const stadiumAlreadyExists = await this.repository.findByExactName(name);
 
     if (stadiumAlreadyExists) {
       throw new CreateStadiumError("Este estádio já está cadastrado");

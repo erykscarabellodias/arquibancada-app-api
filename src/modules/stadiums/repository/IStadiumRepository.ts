@@ -3,5 +3,6 @@ import CreateStadiumInputDto from "../useCases/createStadium/dto/CreateStadiumIn
 
 export default interface IStadiumRepository {
   create(createStadiumDto: CreateStadiumInputDto): Promise<Stadium>;
-  findByName(name: string): Promise<Stadium | null>;
+  findByExactName(name: string): Promise<Stadium | null>;
+  findByName(name: string): Promise<Stadium[]>;
 }

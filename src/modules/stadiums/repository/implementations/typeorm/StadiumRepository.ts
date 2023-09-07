@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { ILike, Repository } from "typeorm";
 import Stadium from "../../../entites/Stadium";
 import CreateStadiumInputDto from "../../../useCases/createStadium/dto/CreateStadiumInput.dto";
 import IStadiumInterfaceRepository from "../../IStadiumRepository";
@@ -20,7 +20,15 @@ export default class StadiumRepository implements IStadiumInterfaceRepository {
     });
   }
 
-  findByName(name: string): Promise<Stadium | null> {
+  findByExactName(name: string): Promise<Stadium | null> {
     return this.repository.findOne({ where: { name } });
+  }
+
+  findByName(name: string): Promise<Stadium[]> {
+    return this.repository.find({
+      where: {
+        name: ILike(`%${name}%`),
+      },
+    });
   }
 }

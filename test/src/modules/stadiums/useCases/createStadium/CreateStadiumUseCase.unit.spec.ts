@@ -14,7 +14,7 @@ describe("create stadium unit tests suit", () => {
 
   it("should be able to create a stadium", async () => {
     repository.create = createdStadiumMock;
-    repository.findByName = stadiumDoesNotExistsMock;
+    repository.findByExactName = stadiumDoesNotExistsMock;
 
     const dto: CreateStadiumInputDto = {
       name: "Neo Química Arena",
@@ -30,7 +30,7 @@ describe("create stadium unit tests suit", () => {
   });
 
   it("should not be able to create a stadium already registered", async () => {
-    repository.findByName = createdStadiumMock;
+    repository.findByExactName = createdStadiumMock;
 
     const dto: CreateStadiumInputDto = {
       name: "Neo Química Arena",
