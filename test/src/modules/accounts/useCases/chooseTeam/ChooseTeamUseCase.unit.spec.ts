@@ -8,10 +8,7 @@ import {
   returnTeamMock,
   teamDoesNotExist,
 } from "../../../../../mocks/teams/teamsMocks";
-import {
-  returnUserMock,
-  returnUserWithTeamMock,
-} from "../../../../../mocks/user/userMocks";
+import { returnUserWithTeamMock } from "../../../../../mocks/user/userMocks";
 
 describe("choose team unit tests suit", () => {
   const teamRepository = new TeamRepository();
@@ -41,6 +38,7 @@ describe("choose team unit tests suit", () => {
       state: "São Paulo",
       created_at: new Date(),
       users: [],
+      stadium: null,
     },
   };
 
