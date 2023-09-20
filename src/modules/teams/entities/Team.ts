@@ -1,5 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { User } from "../../accounts/entities/User";
+import Stadium from "../../stadiums/entites/Stadium";
 
 @Entity({ name: "teams" })
 export class Team {
@@ -23,4 +31,8 @@ export class Team {
 
   @OneToMany((user) => User, (user) => user.team)
   users: User[];
+
+  @ManyToOne((stadium) => Stadium, (stadium) => stadium.teams)
+  @JoinColumn({ name: "stadium_id" })
+  stadium: Stadium | null;
 }

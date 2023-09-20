@@ -4,6 +4,7 @@ import { appDataSource } from "../../../../../config/database/typeorm/data-sourc
 import { ITeamRepository } from "../../ITeamRepository";
 import CreateTeamInputDto from "../../../useCases/createTeam/dto/CreateTeamInputDto";
 import { v4 as uuidV4 } from "uuid";
+import Stadium from "../../../../stadiums/entites/Stadium";
 
 export class TeamRepository implements ITeamRepository {
   private repository: Repository<Team>;
@@ -63,6 +64,14 @@ export class TeamRepository implements ITeamRepository {
         id,
       },
     });
+
+    return team;
+  }
+
+  async chooseStadium(team: Team, stadium: Stadium): Promise<Team> {
+    team.stadium = stadium;
+
+    await this.repository.save(team);
 
     return team;
   }

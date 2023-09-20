@@ -31,4 +31,8 @@ export default class StadiumRepository implements IStadiumInterfaceRepository {
       },
     });
   }
+
+  findById(id: string): Promise<Stadium | null> {
+    return this.repository.findOne({ where: { id } });
+  }
 }

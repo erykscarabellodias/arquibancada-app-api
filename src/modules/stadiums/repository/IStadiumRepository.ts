@@ -5,4 +5,5 @@ export default interface IStadiumRepository {
   create(createStadiumDto: CreateStadiumInputDto): Promise<Stadium>;
   findByExactName(name: string): Promise<Stadium | null>;
   findByName(name: string): Promise<Stadium[]>;
+  findById(id: string): Promise<Stadium | null>;
 }

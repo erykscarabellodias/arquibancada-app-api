@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Team } from "../../teams/entities/Team";
 
 @Entity({ name: "stadiums" })
 export default class Stadium {
@@ -13,4 +14,7 @@ export default class Stadium {
 
   @Column()
   created_at: Date;
+
+  @OneToMany((team) => Team, (team) => team.stadium)
+  teams: Team[];
 }

@@ -1,3 +1,4 @@
+import Stadium from "../../stadiums/entites/Stadium";
 import { Team } from "../entities/Team";
 import CreateTeamInputDto from "../useCases/createTeam/dto/CreateTeamInputDto";
 
@@ -14,4 +15,6 @@ export interface ITeamRepository {
   findByName(name: string): Promise<Team[] | null>;
 
   findById(id: string): Promise<Team | null>;
+
+  chooseStadium(team: Team, stadium: Stadium): Promise<Team>;
 }
