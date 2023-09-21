@@ -35,9 +35,7 @@ export class UserRepository implements IUserRepository {
       where: {
         id,
       },
-      relations: {
-        team: true,
-      },
+      relations: ["team", "team.stadium"],
     });
   }
 
