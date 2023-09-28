@@ -23,7 +23,12 @@ export default class TournamentRepository implements ITournamentRepository {
       created_at: new Date(),
     });
   }
+
   async findByName(name: string): Promise<Tournament | null> {
     return this.repository.findOne({ where: { name } });
+  }
+
+  list(): Promise<Tournament[]> {
+    return this.repository.find({ order: { name: "ASC" } });
   }
 }
