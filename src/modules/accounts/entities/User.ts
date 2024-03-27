@@ -3,9 +3,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Team } from "../../teams/entities/Team";
+import Match from "../../matches/entities/Match";
 
 @Entity({ name: "users" })
 export class User {
@@ -25,6 +27,9 @@ export class User {
 
   @Column()
   created_at: Date;
+
+  @OneToMany((match) => Match, (match) => match.user)
+  matches: Match[] | null;
 
   @ManyToOne((team) => Team, (team) => team.id)
   @JoinColumn({ name: "team_id" })

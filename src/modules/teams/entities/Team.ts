@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { User } from "../../accounts/entities/User";
 import Stadium from "../../stadiums/entites/Stadium";
+import Match from "../../matches/entities/Match";
 
 @Entity({ name: "teams" })
 export class Team {
@@ -32,6 +33,9 @@ export class Team {
 
   @OneToMany((user) => User, (user) => user.team)
   users: User[];
+
+  @OneToMany((match) => Match, (match) => match.opponent)
+  matchesAsOpponent: Match[] | null;
 
   @ManyToOne((stadium) => Stadium, (stadium) => stadium.teams)
   @JoinColumn({ name: "stadium_id" })

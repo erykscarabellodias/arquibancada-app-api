@@ -31,4 +31,8 @@ export default class TournamentRepository implements ITournamentRepository {
   list(): Promise<Tournament[]> {
     return this.repository.find({ order: { name: "ASC" } });
   }
+
+  findById(id: string): Promise<Tournament | null> {
+    return this.repository.findOne({ where: { id } });
+  }
 }

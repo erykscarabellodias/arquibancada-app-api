@@ -8,5 +8,7 @@ export default interface ITournamentRepository {
 
   findByName(name: string): Promise<Tournament | null>;
 
+  findById(id: string): Promise<Tournament | null>;
+
   list(): Promise<Tournament[]>;
 }

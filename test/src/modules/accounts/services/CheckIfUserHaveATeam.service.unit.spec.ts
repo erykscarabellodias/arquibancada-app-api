@@ -11,6 +11,7 @@ describe("check if user have a team service unit tests suit", () => {
       email: "newuser@gmail.com",
       created_at: new Date(),
       password: "fakePassword",
+      matches: null,
       team: {
         id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
         complete_name: "Sport Club Corinthians Paulista",
@@ -20,6 +21,7 @@ describe("check if user have a team service unit tests suit", () => {
         created_at: new Date(),
         users: [],
         stadium: null,
+        matchesAsOpponent: null,
       },
     };
 
@@ -36,6 +38,7 @@ describe("check if user have a team service unit tests suit", () => {
       created_at: new Date(),
       password: "fakePassword",
       team: null,
+      matches: null,
     };
 
     const userHaveATeam = service.checkIfUserHaveATeam(user);

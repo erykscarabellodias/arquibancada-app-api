@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Team } from "../../teams/entities/Team";
+import Match from "../../matches/entities/Match";
 
 @Entity({ name: "stadiums" })
 export default class Stadium {
@@ -17,4 +18,7 @@ export default class Stadium {
 
   @OneToMany((team) => Team, (team) => team.stadium)
   teams: Team[];
+
+  @OneToMany((match) => Match, (match) => match.stadium)
+  matches: Match[] | null;
 }
