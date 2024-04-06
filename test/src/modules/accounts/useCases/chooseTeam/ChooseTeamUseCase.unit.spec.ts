@@ -22,6 +22,7 @@ describe("choose team unit tests suit", () => {
     password: "fakepassword",
     created_at: new Date(),
     team: null,
+    matches: [],
   };
 
   const userWithTeam: User = {
@@ -30,6 +31,7 @@ describe("choose team unit tests suit", () => {
     email: "newuser@gmail.com",
     password: "fakepassword",
     created_at: new Date(),
+    matches: [],
     team: {
       id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
       complete_name: "Sport Club Corinthians Paulista",
@@ -39,6 +41,7 @@ describe("choose team unit tests suit", () => {
       created_at: new Date(),
       users: [],
       stadium: null,
+      matchesAsOpponent: [],
     },
   };
 

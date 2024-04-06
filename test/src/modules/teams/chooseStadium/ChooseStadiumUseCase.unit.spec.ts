@@ -24,6 +24,7 @@ describe("choose team use case tests suit", () => {
     email: "newuser@gmail.com",
     created_at: new Date(),
     password: "fakePassword",
+    matches: [],
     team: {
       id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
       complete_name: "Sport Club Corinthians Paulista",
@@ -32,12 +33,14 @@ describe("choose team use case tests suit", () => {
       state: "São Paulo",
       created_at: new Date(),
       users: [],
+      matchesAsOpponent: [],
       stadium: {
         id: "97c929f8-542d-45fa-bbdb-23fd63e2fee8",
         name: "Neo Química Arena",
         public_capacity: 46000,
         created_at: new Date(),
         teams: [],
+        matches: [],
       },
     },
   };
@@ -48,6 +51,7 @@ describe("choose team use case tests suit", () => {
     email: "newuser@gmail.com",
     created_at: new Date(),
     password: "fakePassword",
+    matches: [],
     team: {
       id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
       complete_name: "Sport Club Corinthians Paulista",
@@ -57,6 +61,7 @@ describe("choose team use case tests suit", () => {
       created_at: new Date(),
       users: [],
       stadium: null,
+      matchesAsOpponent: [],
     },
   };
 
@@ -67,6 +72,7 @@ describe("choose team use case tests suit", () => {
     created_at: new Date(),
     password: "fakePassword",
     team: null,
+    matches: [],
   };
 
   const teamRepository = new TeamRepository();

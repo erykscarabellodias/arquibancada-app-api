@@ -1,5 +1,4 @@
 import { User } from "../../../../../src/modules/accounts/entities/User";
-import CheckIfUserHaveATeamService from "../../../../../src/modules/accounts/services/CheckIfUserHaveATeam.service";
 import CheckIfUserTeamHaveAStadiumService from "../../../../../src/modules/stadiums/services/CheckIfUserTeamHaveAStadium.service";
 
 describe("check if user team have a stadium service unit tests suit", () => {
@@ -12,6 +11,7 @@ describe("check if user team have a stadium service unit tests suit", () => {
       email: "newuser@gmail.com",
       created_at: new Date(),
       password: "fakePassword",
+      matches: [],
       team: {
         id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
         complete_name: "Sport Club Corinthians Paulista",
@@ -20,12 +20,14 @@ describe("check if user team have a stadium service unit tests suit", () => {
         state: "São Paulo",
         created_at: new Date(),
         users: [],
+        matchesAsOpponent: [],
         stadium: {
           id: "97c929f8-542d-45fa-bbdb-23fd63e2fee8",
           name: "Neo Química Arena",
           public_capacity: 46000,
           created_at: new Date(),
           teams: [],
+          matches: [],
         },
       },
     };
@@ -42,6 +44,7 @@ describe("check if user team have a stadium service unit tests suit", () => {
       email: "newuser@gmail.com",
       created_at: new Date(),
       password: "fakePassword",
+      matches: [],
       team: {
         id: "f3472988-da25-4315-b01d-ba604bf5b3a9",
         complete_name: "Sport Club Corinthians Paulista",
@@ -51,6 +54,7 @@ describe("check if user team have a stadium service unit tests suit", () => {
         created_at: new Date(),
         users: [],
         stadium: null,
+        matchesAsOpponent: [],
       },
     };
 
