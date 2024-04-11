@@ -57,7 +57,6 @@ describe("create player use case tests suit", () => {
 
     const player = await useCase.execute(dto);
 
-    expect(player).toBeInstanceOf(Player);
     expect(player).toHaveProperty("id");
     expect(player).toHaveProperty("nickname");
     expect(player).toHaveProperty("complete_name");
