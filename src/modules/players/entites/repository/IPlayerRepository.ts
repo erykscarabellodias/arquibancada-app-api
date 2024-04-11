@@ -6,4 +6,5 @@ export default interface IPlayerRepository {
     nickname: string,
     complenteName: string
   ): Promise<Player | null>;
+  findById(id: string): Promise<Player | null>;
 }

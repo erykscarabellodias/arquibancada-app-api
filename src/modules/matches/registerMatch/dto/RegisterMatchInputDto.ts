@@ -49,6 +49,6 @@ export default class RegisterMatchInputDto {
 }
 
 class Scorer {
-  name: string;
+  id: string;
   ownGoal: boolean;
 }

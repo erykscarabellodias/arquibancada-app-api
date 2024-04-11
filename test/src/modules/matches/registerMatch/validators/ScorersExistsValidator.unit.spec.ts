@@ -2,18 +2,26 @@ import { User } from "../../../../../../src/modules/accounts/entities/User";
 import RegisterMatchInputDto from "../../../../../../src/modules/matches/registerMatch/dto/RegisterMatchInputDto";
 import FieldCommand from "../../../../../../src/modules/matches/registerMatch/enums/FieldCommand";
 import RegisterMatchError from "../../../../../../src/modules/matches/registerMatch/errors/RegisterMatchError";
-import { UserTeamCantBeTheSameAsTheOpponentValidator } from "../../../../../../src/modules/matches/registerMatch/validators/UserTeamCantBeTheSameAsTheOpponentValidator";
+import ScorersExistsValidator from "../../../../../../src/modules/matches/registerMatch/validators/ScorersExistsValidator";
+import IPlayerRepository from "../../../../../../src/modules/players/entites/repository/IPlayerRepository";
+import PlayerRepository from "../../../../../../src/modules/players/entites/repository/implementations/PlayerRepository";
+import {
+  playerDontExistsMock,
+  playerMock,
+} from "../../../../../mocks/player/playerMocks";
 import { returnUserWithTeamMock } from "../../../../../mocks/user/userMocks";
 
-describe("user team cannot be the same as the opponent unit tests suit", () => {
+describe("scorers exists unit tests suit", () => {
+  const repository: IPlayerRepository = new PlayerRepository();
+  const validator = new ScorersExistsValidator(repository);
+
   const user: User = returnUserWithTeamMock();
 
-  const validator: UserTeamCantBeTheSameAsTheOpponentValidator =
-    new UserTeamCantBeTheSameAsTheOpponentValidator();
+  it("should not be able to create a match with a player that do not exists", async () => {
+    repository.findById = playerDontExistsMock;
 
-  it("the teams id cannot be the same", async () => {
     const dto: RegisterMatchInputDto = {
-      opponentId: "f3472988-da25-4315-b01d-ba604bf5b3a9",
+      opponentId: "6e9bbb89-e3ed-4562-acf2-2ce48bd9467e",
       stadiumId: "85fb581e-1464-4094-8804-a18be3bc263f",
       tournamentId: "efa8a079-d8ba-46e3-87b3-8cc29f873d21",
       season: 2016,
@@ -39,15 +47,15 @@ describe("user team cannot be the same as the opponent unit tests suit", () => {
     expect(async () => {
       await validator.validate(dto, user);
     }).rejects.toThrow(
-      new RegisterMatchError(
-        "O time do usuário não pode ser o mesmo do adversário"
-      )
+      new RegisterMatchError("Algum jogador enviado não está cadastrado")
     );
   });
 
-  it("the teams id are different", async () => {
+  it("should be able to create a match with a player that exists", async () => {
+    repository.findById = playerMock;
+
     const dto: RegisterMatchInputDto = {
-      opponentId: "cc9d7603-5d4b-481b-aa10-d2ab3f84c69b",
+      opponentId: "6e9bbb89-e3ed-4562-acf2-2ce48bd9467e",
       stadiumId: "85fb581e-1464-4094-8804-a18be3bc263f",
       tournamentId: "efa8a079-d8ba-46e3-87b3-8cc29f873d21",
       season: 2016,
@@ -67,6 +75,23 @@ describe("user team cannot be the same as the opponent unit tests suit", () => {
           ownGoal: false,
         },
       ],
+      fieldCommand: FieldCommand.HOME,
+    };
+
+    expect(async () => {
+      await validator.validate(dto, user);
+    }).not.toThrow();
+  });
+
+  it("should be able to create a match without players", async () => {
+    const dto: RegisterMatchInputDto = {
+      opponentId: "6e9bbb89-e3ed-4562-acf2-2ce48bd9467e",
+      stadiumId: "85fb581e-1464-4094-8804-a18be3bc263f",
+      tournamentId: "efa8a079-d8ba-46e3-87b3-8cc29f873d21",
+      season: 2016,
+      yourTeamGoals: 3,
+      opponentGoals: 0,
+      scorers: [],
       fieldCommand: FieldCommand.HOME,
     };
 

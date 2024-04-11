@@ -31,4 +31,8 @@ export default class PlayerRepository implements IPlayerRepository {
       },
     });
   }
+
+  async findById(id: string): Promise<Player | null> {
+    return this.repository.findOneBy({ id });
+  }
 }

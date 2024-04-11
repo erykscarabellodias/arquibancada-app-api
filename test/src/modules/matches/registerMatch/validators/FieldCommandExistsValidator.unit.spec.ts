@@ -18,15 +18,15 @@ describe("field command exists validator unit tests suit", () => {
     opponentGoals: 0,
     scorers: [
       {
-        name: "Kadu",
+        id: "d6ec1850-f2de-410a-8860-96c6028f1f59",
         ownGoal: true,
       },
       {
-        name: "Bruno Henrique",
+        id: "2c598381-164c-4478-819e-0909eeb00a46",
         ownGoal: false,
       },
       {
-        name: "Guilherme",
+        id: "56d1488e-638d-4bb3-9f2d-289a0bdc7acb",
         ownGoal: false,
       },
     ],
