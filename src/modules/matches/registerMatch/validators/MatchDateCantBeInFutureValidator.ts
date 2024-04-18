@@ -1,20 +1,18 @@
+import DateUtils from "../../../../shared/utils/DateUtils";
 import { User } from "../../../accounts/entities/User";
 import RegisterMatchInputDto from "../dto/RegisterMatchInputDto";
-import FieldCommand from "../enums/FieldCommand";
 import RegisterMatchError from "../errors/RegisterMatchError";
 import RegisterMatchValidatorInterface from "./RegisterMatchValidatorInterface";
 
-export class FieldCommandExistsValidator
+export default class MatchDateCantBeInFutureValidator
   implements RegisterMatchValidatorInterface
 {
-  async validate(dto: RegisterMatchInputDto, user: User): Promise<void> {
-    const fieldCommandExists = Object.values(FieldCommand).includes(
-      dto.fieldCommand
-    );
+  constructor(private readonly dateUtils: DateUtils) {}
 
-    if (!fieldCommandExists) {
+  async validate(dto: RegisterMatchInputDto, user: User): Promise<void> {
+    if (dto.date > this.dateUtils.getTodayDate()) {
       throw new RegisterMatchError(
-        "O tipo de mando de campo enviado não existe"
+        "A partida não pode ter sido disputada no futuro"
       );
     }
   }

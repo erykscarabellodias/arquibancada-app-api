@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import MatchScorer from "../../matches/entities/MatchScorer";
 
 @Entity({ name: "players" })
 export default class Player {
@@ -10,6 +11,9 @@ export default class Player {
 
   @Column()
   complete_name: string;
+
+  @OneToMany(() => MatchScorer, (matchScorer) => matchScorer.match)
+  matchScorer: MatchScorer;
 
   @Column()
   created_at: Date;

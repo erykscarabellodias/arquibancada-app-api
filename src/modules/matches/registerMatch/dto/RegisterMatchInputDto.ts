@@ -1,9 +1,9 @@
 import {
   IsArray,
+  IsDate,
   IsEnum,
   IsInt,
   IsNotEmpty,
-  IsNumberString,
   IsString,
 } from "class-validator";
 import FieldCommand from "../enums/FieldCommand";
@@ -24,7 +24,7 @@ export default class RegisterMatchInputDto {
 
   @IsEnum(FieldCommand, {
     message:
-      "O campo fieldCommand deve conter os valores HOME, AWAY ou NEUTRAL",
+      "O campo fieldCommand deve conter os valores Mandante, Visitante ou Neutro",
   })
   @IsNotEmpty({ message: "O campo fieldCommand é obrigatório" })
   fieldCommand: FieldCommand;
@@ -41,6 +41,10 @@ export default class RegisterMatchInputDto {
   @IsNotEmpty({ message: "O campo opponentGoals é obrigatório" })
   opponentGoals: number;
 
+  @IsNotEmpty({ message: "O campo date é obrigatório" })
+  @IsDate({ message: "O campo date deve ser uma data válida" })
+  date: Date;
+
   @IsArray({
     message: "O campo scorers deve ser um array",
   })
@@ -48,7 +52,7 @@ export default class RegisterMatchInputDto {
   scorers: Scorer[];
 }
 
-class Scorer {
+export class Scorer {
   id: string;
   ownGoal: boolean;
 }

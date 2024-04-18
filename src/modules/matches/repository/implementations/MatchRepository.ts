@@ -3,6 +3,12 @@ import Match from "../../entities/Match";
 import FieldCommand from "../../registerMatch/enums/FieldCommand";
 import IMatchRepository from "../IMatchRepository";
 import { appDataSource } from "../../../../config/database/typeorm/data-source";
+import Stadium from "../../../stadiums/entites/Stadium";
+import { Team } from "../../../teams/entities/Team";
+import Tournament from "../../../tournament/entities/Tournament";
+import { v4 as uuidV4 } from "uuid";
+import { User } from "../../../accounts/entities/User";
+import Player from "../../../players/entites/Player";
 
 export default class MatchRepository implements IMatchRepository {
   private repository: Repository<Match>;
@@ -26,6 +32,29 @@ export default class MatchRepository implements IMatchRepository {
         opponent: { id: opponentId },
         user: { id: userId },
       },
+    });
+  }
+
+  async create(
+    opponent: Team,
+    tournament: Tournament,
+    stadium: Stadium,
+    fieldCommand: FieldCommand,
+    yourTeamGoals: number,
+    opponentTeamGoals: number,
+    season: number,
+    user: User
+  ): Promise<Match> {
+    return this.repository.save({
+      id: uuidV4(),
+      opponent,
+      tournament,
+      stadium,
+      season,
+      fieldCommand,
+      yourTeamGoals,
+      opponentTeamGoals,
+      user,
     });
   }
 }

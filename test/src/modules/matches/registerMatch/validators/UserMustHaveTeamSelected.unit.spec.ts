@@ -19,6 +19,7 @@ describe("user must have team selected unit tests suit", () => {
     season: 2016,
     yourTeamGoals: 3,
     opponentGoals: 0,
+    date: new Date("2016-05-16"),
     scorers: [
       {
         id: "d6ec1850-f2de-410a-8860-96c6028f1f59",

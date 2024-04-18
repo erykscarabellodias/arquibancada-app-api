@@ -5,6 +5,7 @@ import Stadium from "../../../modules/stadiums/entites/Stadium";
 import Tournament from "../../../modules/tournament/entities/Tournament";
 import Match from "../../../modules/matches/entities/Match";
 import Player from "../../../modules/players/entites/Player";
+import MatchScorer from "../../../modules/matches/entities/MatchScorer";
 
 export const appDataSource = new DataSource({
   type: "postgres",
@@ -15,7 +16,7 @@ export const appDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: false,
   logging: process.env.ENV == "development" ? true : false,
-  entities: [User, Team, Stadium, Tournament, Match, Player],
+  entities: [User, Team, Stadium, Tournament, Match, Player, MatchScorer],
   subscribers: [],
   migrations: ["./src/shared/typeorm/migrations/*.ts"],
 });
