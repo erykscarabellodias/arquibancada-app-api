@@ -4,6 +4,7 @@ import FieldCommand from "../../../../../src/modules/matches/registerMatch/enums
 import RegisterMatchValidatorInterface from "../../../../../src/modules/matches/registerMatch/validators/RegisterMatchValidatorInterface";
 import MatchRepository from "../../../../../src/modules/matches/repository/implementations/MatchRepository";
 import MatchScorerRepository from "../../../../../src/modules/matches/repository/implementations/MatchScorerRepository";
+import MatchResult from "../../../../../src/modules/matches/services/MatchResult";
 import PlayerRepository from "../../../../../src/modules/players/entites/repository/implementations/PlayerRepository";
 import StadiumRepository from "../../../../../src/modules/stadiums/repository/implementations/typeorm/StadiumRepository";
 import { TeamRepository } from "../../../../../src/modules/teams/repository/implementations/typeorm/TeamRespository";
@@ -23,6 +24,7 @@ describe("register match use case unit tests suit", () => {
   const stadiumRepository = new StadiumRepository();
   const tournamentRepository = new TournamentRepository();
   const matchScorerRepository = new MatchScorerRepository();
+  const matchResult = new MatchResult();
 
   const validators: RegisterMatchValidatorInterface[] = [];
 
@@ -33,7 +35,8 @@ describe("register match use case unit tests suit", () => {
     tournamentRepository,
     stadiumRepository,
     playerRepository,
-    matchScorerRepository
+    matchScorerRepository,
+    matchResult
   );
 
   const user = returnUserWithTeamMock();

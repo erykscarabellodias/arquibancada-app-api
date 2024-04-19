@@ -6,6 +6,7 @@ import { TeamRepository } from "../../teams/repository/implementations/typeorm/T
 import TournamentRepository from "../../tournament/repository/implementations/typeorm/TournamentRepository";
 import MatchRepository from "../repository/implementations/MatchRepository";
 import MatchScorerRepository from "../repository/implementations/MatchScorerRepository";
+import MatchResult from "../services/MatchResult";
 import RegisterMatchController from "./RegisterMatchController";
 import RegisterMatchUseCase from "./RegisterMatchUseCase";
 import RegisterMatchValidatorInterface from "./validators/RegisterMatchValidatorInterface";
@@ -18,6 +19,7 @@ const registerMatch = (): RegisterMatchController => {
   const stadiumRepository = new StadiumRepository();
   const tournamentRepository = new TournamentRepository();
   const matchScorerRepository = new MatchScorerRepository();
+  const matchResult = new MatchResult();
   const dateUtils = new DateUtils();
 
   const validators: RegisterMatchValidatorInterface[] = exportValidators(
@@ -36,7 +38,8 @@ const registerMatch = (): RegisterMatchController => {
     tournamentRepository,
     stadiumRepository,
     playerRepository,
-    matchScorerRepository
+    matchScorerRepository,
+    matchResult
   );
 
   const controller: RegisterMatchController = new RegisterMatchController(

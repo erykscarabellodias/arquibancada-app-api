@@ -2,8 +2,6 @@ import {
   Column,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -13,13 +11,16 @@ import { Team } from "../../teams/entities/Team";
 import { User } from "../../accounts/entities/User";
 import Stadium from "../../stadiums/entites/Stadium";
 import Tournament from "../../tournament/entities/Tournament";
-import Player from "../../players/entites/Player";
 import MatchScorer from "./MatchScorer";
+import Result from "../registerMatch/enums/Result";
 
 @Entity({ name: "matches" })
 export default class Match {
   @PrimaryGeneratedColumn("uuid")
   id: string;
+
+  @Column("varchar", { nullable: false })
+  result: Result;
 
   @Column("integer", { nullable: false })
   season: number;

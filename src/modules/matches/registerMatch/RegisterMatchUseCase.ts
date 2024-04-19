@@ -15,6 +15,7 @@ import RegisterMatchValidatorInterface from "./validators/RegisterMatchValidator
 import ClassValidatorValidationError from "../../../shared/errors/classValidator/ClassValidatorValidationError";
 import SaveScorersDto from "./dto/SaveScorersDto";
 import IMatchScorerRepository from "../repository/IMatchScorerRepository";
+import MatchResult from "../services/MatchResult";
 
 export default class RegisterMatchUseCase {
   constructor(
@@ -24,7 +25,8 @@ export default class RegisterMatchUseCase {
     private readonly tournamentRepository: ITournamentRepository,
     private readonly stadiumRepository: IStadiumRepository,
     private readonly playerRepository: IPlayerRepository,
-    private readonly matchScorerRepository: IMatchScorerRepository
+    private readonly matchScorerRepository: IMatchScorerRepository,
+    private readonly matchResult: MatchResult
   ) {}
 
   async execute(registerMatchDto: RegisterMatchInputDto, user: User) {
@@ -52,6 +54,8 @@ export default class RegisterMatchUseCase {
       date,
     } = registerMatchDto;
 
+    const result = this.matchResult.check(yourTeamGoals, opponentGoals);
+
     const opponent: Team = (await this.teamRepository.findById(
       opponentId
     )) as Team;
@@ -65,6 +69,7 @@ export default class RegisterMatchUseCase {
     )) as Stadium;
 
     const match = await this.matchRepository.create(
+      result,
       opponent,
       tournament,
       stadium,

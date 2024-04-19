@@ -9,6 +9,7 @@ import Tournament from "../../../tournament/entities/Tournament";
 import { v4 as uuidV4 } from "uuid";
 import { User } from "../../../accounts/entities/User";
 import Player from "../../../players/entites/Player";
+import Result from "../../registerMatch/enums/Result";
 
 export default class MatchRepository implements IMatchRepository {
   private repository: Repository<Match>;
@@ -36,6 +37,7 @@ export default class MatchRepository implements IMatchRepository {
   }
 
   async create(
+    result: Result,
     opponent: Team,
     tournament: Tournament,
     stadium: Stadium,
@@ -48,6 +50,7 @@ export default class MatchRepository implements IMatchRepository {
   ): Promise<Match> {
     return this.repository.save({
       id: uuidV4(),
+      result,
       opponent,
       tournament,
       stadium,

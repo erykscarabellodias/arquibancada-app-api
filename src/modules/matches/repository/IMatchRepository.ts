@@ -5,6 +5,7 @@ import { Team } from "../../teams/entities/Team";
 import Tournament from "../../tournament/entities/Tournament";
 import Match from "../entities/Match";
 import FieldCommand from "../registerMatch/enums/FieldCommand";
+import Result from "../registerMatch/enums/Result";
 import ScorersExistsValidator from "../registerMatch/validators/ScorersExistsValidator";
 
 export default interface IMatchRepository {
@@ -17,6 +18,7 @@ export default interface IMatchRepository {
   ): Promise<Match | null>;
 
   create(
+    result: Result,
     opponent: Team,
     tournament: Tournament,
     stadium: Stadium,
