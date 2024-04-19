@@ -2,7 +2,7 @@ import { Team } from "../../../src/modules/teams/entities/Team";
 import { TeamRepository } from "../../../src/modules/teams/repository/implementations/typeorm/TeamRespository";
 import CreateTeamInputDto from "../../../src/modules/teams/useCases/createTeam/dto/CreateTeamInputDto";
 
-const createTeams = async (): Promise<Team> => {
+const createTeams = async (): Promise<Team[]> => {
   const teamRepository = new TeamRepository();
 
   const corinthians: CreateTeamInputDto = {
@@ -20,9 +20,9 @@ const createTeams = async (): Promise<Team> => {
   };
 
   const createdCorinthians = await teamRepository.create(corinthians);
-  await teamRepository.create(coritiba);
+  const createdCoritiba = await teamRepository.create(coritiba);
 
-  return createdCorinthians;
+  return [createdCorinthians, createdCoritiba];
 };
 
 export default createTeams;

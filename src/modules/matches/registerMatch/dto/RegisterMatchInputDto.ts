@@ -1,13 +1,15 @@
 import {
   IsArray,
   IsDate,
+  IsDateString,
   IsEnum,
   IsInt,
   IsNotEmpty,
   IsString,
+  Matches,
 } from "class-validator";
 import FieldCommand from "../enums/FieldCommand";
-import { Type } from "class-transformer";
+import { Transform, Type } from "class-transformer";
 
 export default class RegisterMatchInputDto {
   @IsString({ message: "O campo opponentId deve ser uma string" })
@@ -42,7 +44,13 @@ export default class RegisterMatchInputDto {
   opponentGoals: number;
 
   @IsNotEmpty({ message: "O campo date é obrigatório" })
-  @IsDate({ message: "O campo date deve ser uma data válida" })
+  @Transform(({ value }) =>
+    value instanceof Date ? value.toISOString().split("T")[0] : value
+  )
+  @IsDateString(
+    {},
+    { message: "O campo date deve ser uma data válida no formato AAAA-MM-DD" }
+  )
   date: Date;
 
   @IsArray({

@@ -43,6 +43,7 @@ export default class MatchRepository implements IMatchRepository {
     yourTeamGoals: number,
     opponentTeamGoals: number,
     season: number,
+    date: Date,
     user: User
   ): Promise<Match> {
     return this.repository.save({
@@ -54,6 +55,7 @@ export default class MatchRepository implements IMatchRepository {
       fieldCommand,
       yourTeamGoals,
       opponentTeamGoals,
+      date,
       user,
     });
   }

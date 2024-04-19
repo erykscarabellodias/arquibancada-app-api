@@ -24,6 +24,7 @@ export default interface IMatchRepository {
     yourTeamGoals: number,
     opponentTeamGoals: number,
     season: number,
+    date: Date,
     user: User
   ): Promise<Match>;
 }

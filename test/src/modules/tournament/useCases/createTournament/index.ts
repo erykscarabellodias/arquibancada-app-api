@@ -1,4 +1,3 @@
-import { Repository } from "typeorm";
 import CreateTournamentController from "../../../../../../src/modules/tournament/useCases/createTournament/CreateTournametController";
 import CreateTournamentUseCase from "../../../../../../src/modules/tournament/useCases/createTournament/CreateTournamentUseCase";
 import TournamentRepository from "../../../../../../src/modules/tournament/repository/implementations/typeorm/TournamentRepository";

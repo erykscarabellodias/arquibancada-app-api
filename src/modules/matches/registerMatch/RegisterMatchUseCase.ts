@@ -49,6 +49,7 @@ export default class RegisterMatchUseCase {
       season,
       yourTeamGoals,
       scorers,
+      date,
     } = registerMatchDto;
 
     const opponent: Team = (await this.teamRepository.findById(
@@ -71,12 +72,11 @@ export default class RegisterMatchUseCase {
       yourTeamGoals,
       opponentGoals,
       season,
+      date,
       user
     );
 
     const formattedScorers = await this.getFormattedScorersOfMatch(scorers);
-
-    console.log(formattedScorers);
 
     formattedScorers.forEach(async (scorer) => {
       await this.matchScorerRepository.registerMatchScorer(match, scorer);

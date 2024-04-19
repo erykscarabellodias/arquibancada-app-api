@@ -15,7 +15,8 @@ describe("choose team controller integration tests suit", () => {
   beforeEach(async () => {
     connection = await prepareDatabase();
     jwtToken = await createDefaultUserAndGenerateJwtToken();
-    corinthians = await createTeams();
+    const teamsCreated = await createTeams();
+    corinthians = teamsCreated[0];
   });
 
   afterEach(async () => {
