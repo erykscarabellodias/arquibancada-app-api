@@ -8,7 +8,6 @@ import { Team } from "../../../teams/entities/Team";
 import Tournament from "../../../tournament/entities/Tournament";
 import { v4 as uuidV4 } from "uuid";
 import { User } from "../../../accounts/entities/User";
-import Player from "../../../players/entites/Player";
 import Result from "../../registerMatch/enums/Result";
 
 export default class MatchRepository implements IMatchRepository {
@@ -61,5 +60,9 @@ export default class MatchRepository implements IMatchRepository {
       date,
       user,
     });
+  }
+
+  async countMatchesByUserId(userId: string): Promise<number> {
+    throw new Error("Method not implemented.");
   }
 }

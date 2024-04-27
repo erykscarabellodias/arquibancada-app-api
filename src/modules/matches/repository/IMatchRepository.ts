@@ -29,4 +29,6 @@ export default interface IMatchRepository {
     date: Date,
     user: User
   ): Promise<Match>;
+
+  countMatchesByUserId(userId: string): Promise<number>;
 }
