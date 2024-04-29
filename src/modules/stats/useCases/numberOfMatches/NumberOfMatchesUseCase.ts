@@ -1,7 +1,7 @@
-import { User } from "../../../../accounts/entities/User";
-import IMatchRepository from "../../../../matches/repository/IMatchRepository";
-import NumberOfMatchesError from "../NumberOfMatchesError";
-import NumberOfMatchesOutputDto from "../dto/NumberOfMatchesOutputDto";
+import { User } from "../../../accounts/entities/User";
+import IMatchRepository from "../../../matches/repository/IMatchRepository";
+import NumberOfMatchesError from "./errors/NumberOfMatchesError";
+import NumberOfMatchesOutputDto from "./dto/NumberOfMatchesOutputDto";
 
 export default class NumberOfMatchesUseCase {
   constructor(private readonly matchRepository: IMatchRepository) {}
