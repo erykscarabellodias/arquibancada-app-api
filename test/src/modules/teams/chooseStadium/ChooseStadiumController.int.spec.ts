@@ -23,7 +23,7 @@ describe("choose stadium controller integration tests suit", () => {
   });
 
   it("should be able to choose a team stadium", async () => {
-    jwtToken = await createDefaultUserWithTeamAndGenerateJwtToken();
+    jwtToken = (await createDefaultUserWithTeamAndGenerateJwtToken()).jwtToken;
 
     const response = await request(app)
       .post("/teams/choose-stadium")
@@ -34,7 +34,8 @@ describe("choose stadium controller integration tests suit", () => {
   });
 
   it("should not to be able to choose a team without before choose a team", async () => {
-    jwtToken = await createDefaultUserAndGenerateJwtToken();
+    const createdUser = await createDefaultUserAndGenerateJwtToken();
+    jwtToken = createdUser.jwtToken;
 
     const response = await request(app)
       .post("/teams/choose-stadium")
@@ -48,7 +49,7 @@ describe("choose stadium controller integration tests suit", () => {
   });
 
   it("should not to be able to choose a stadium for a team already have a stadium", async () => {
-    jwtToken = await createDefaultUserWithTeamAndGenerateJwtToken();
+    jwtToken = (await createDefaultUserWithTeamAndGenerateJwtToken()).jwtToken;
 
     await request(app)
       .post("/teams/choose-stadium")
@@ -65,7 +66,7 @@ describe("choose stadium controller integration tests suit", () => {
   });
 
   it("should not to be able to choose an inexistent stadium", async () => {
-    jwtToken = await createDefaultUserWithTeamAndGenerateJwtToken();
+    jwtToken = (await createDefaultUserWithTeamAndGenerateJwtToken()).jwtToken;
 
     const response = await request(app)
       .post("/teams/choose-stadium")
@@ -77,7 +78,7 @@ describe("choose stadium controller integration tests suit", () => {
   });
 
   it("should not to be able to choose a team stadium without a token", async () => {
-    jwtToken = await createDefaultUserWithTeamAndGenerateJwtToken();
+    jwtToken = (await createDefaultUserWithTeamAndGenerateJwtToken()).jwtToken;
 
     const response = await request(app)
       .post("/teams/choose-stadium")

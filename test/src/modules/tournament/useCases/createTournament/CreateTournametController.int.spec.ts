@@ -11,7 +11,8 @@ describe("create tournament integration tests suit", () => {
 
   beforeEach(async () => {
     connection = await prepareDatabase();
-    tokenJwt = await createDefaultUserAndGenerateJwtToken();
+    const createdUser = await createDefaultUserAndGenerateJwtToken();
+    tokenJwt = createdUser.jwtToken;
   });
 
   afterEach(async () => {

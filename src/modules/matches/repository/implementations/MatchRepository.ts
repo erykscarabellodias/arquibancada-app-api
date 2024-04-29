@@ -63,6 +63,12 @@ export default class MatchRepository implements IMatchRepository {
   }
 
   async countMatchesByUserId(userId: string): Promise<number> {
-    throw new Error("Method not implemented.");
+    return this.repository.count({
+      where: {
+        user: {
+          id: userId,
+        },
+      },
+    });
   }
 }

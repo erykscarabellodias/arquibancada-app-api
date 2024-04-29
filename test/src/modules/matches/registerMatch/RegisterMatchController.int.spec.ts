@@ -21,7 +21,7 @@ describe("register match controller integration tests suit", () => {
 
   beforeEach(async () => {
     connection = await prepareDatabase();
-    jwtToken = await createDefaultUserWithTeamAndGenerateJwtToken();
+    jwtToken = (await createDefaultUserWithTeamAndGenerateJwtToken()).jwtToken;
     stadium = await createStadiums();
     tournament = await createTournaments();
 

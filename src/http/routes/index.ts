@@ -2,6 +2,7 @@ import { Router } from "express";
 import { authenticationRouter } from "./authentication.routes";
 import { userRouter } from "./user.routes";
 import { teamRoutes } from "./teams.routes";
+import { statsRoutes } from "./stats.routes";
 import stadiumRoutes from "./stadiums.routes";
 import tournamentsRoutes from "./tournaments.routes";
 import playersRoutes from "./players.routes";
@@ -16,5 +17,6 @@ routes.use("/stadiums", stadiumRoutes);
 routes.use("/tournaments", tournamentsRoutes);
 routes.use("/players", playersRoutes);
 routes.use("/matches", matchesRoutes);
+routes.use("/stats", statsRoutes);
 
 export { routes };

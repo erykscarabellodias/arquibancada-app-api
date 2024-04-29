@@ -12,7 +12,8 @@ describe("find stadium controller integration tests suit", () => {
 
   beforeAll(async () => {
     connection = await prepareDatabase();
-    jwtToken = await createDefaultUserAndGenerateJwtToken();
+    const createdUser = await createDefaultUserAndGenerateJwtToken();
+    jwtToken = createdUser.jwtToken;
     await createStadiums();
   });
 

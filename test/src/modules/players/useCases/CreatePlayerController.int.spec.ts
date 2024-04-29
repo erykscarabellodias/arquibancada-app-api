@@ -11,7 +11,8 @@ describe("create player integration tests suit", () => {
 
   beforeEach(async () => {
     connection = await prepareDatabase();
-    jwtToken = await createDefaultUserAndGenerateJwtToken();
+    const createdUser = await createDefaultUserAndGenerateJwtToken();
+    jwtToken = createdUser.jwtToken;
   });
 
   afterEach(async () => {

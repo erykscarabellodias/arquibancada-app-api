@@ -11,7 +11,8 @@ let jwtToken: string;
 
 beforeAll(async () => {
   connection = await prepareDatabase();
-  jwtToken = await createDefaultUserAndGenerateJwtToken();
+  const createdUser = await createDefaultUserAndGenerateJwtToken();
+  jwtToken = createdUser.jwtToken;
   await createTeams();
 });
 

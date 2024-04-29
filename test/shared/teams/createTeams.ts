@@ -19,10 +19,31 @@ const createTeams = async (): Promise<Team[]> => {
     state: "Paraná",
   };
 
+  const figueirense: CreateTeamInputDto = {
+    complete_name: "Figueirense Futebol Clube",
+    nickname: "Figueirense",
+    city: "Florianópolis",
+    state: "Santa Catarina",
+  };
+
+  const redBull: CreateTeamInputDto = {
+    complete_name: "Red Bull Bragantino",
+    nickname: "Red Bull Bragantino",
+    city: "Bragança Paulista",
+    state: "São Paulo",
+  };
+
   const createdCorinthians = await teamRepository.create(corinthians);
   const createdCoritiba = await teamRepository.create(coritiba);
+  const createdFigueirense = await teamRepository.create(figueirense);
+  const createdRedBull = await teamRepository.create(redBull);
 
-  return [createdCorinthians, createdCoritiba];
+  return [
+    createdCorinthians,
+    createdCoritiba,
+    createdFigueirense,
+    createdRedBull,
+  ];
 };
 
 export default createTeams;
