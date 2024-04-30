@@ -1,10 +1,10 @@
 import request from "supertest";
-import { app } from "../../../../src/app";
-import { prepareDatabase } from "../../../shared/prepareDatabase";
-import { dropDatabase } from "../../../shared/dropDatabase";
+import { app } from "../../../../../src/app";
+import { prepareDatabase } from "../../../../shared/prepareDatabase";
+import { dropDatabase } from "../../../../shared/dropDatabase";
 import { DataSource } from "typeorm";
-import { registerMatches } from "../../../shared/matches/registerMatches";
-import createDefaultUserAndGenerateJwtToken from "../../../shared/authentication/createDefaultUserAndGenerateJwtToken";
+import { registerMatches } from "../../../../shared/matches/registerMatches";
+import createDefaultUserAndGenerateJwtToken from "../../../../shared/authentication/createDefaultUserAndGenerateJwtToken";
 
 let connection: DataSource;
 let jwtToken: string;

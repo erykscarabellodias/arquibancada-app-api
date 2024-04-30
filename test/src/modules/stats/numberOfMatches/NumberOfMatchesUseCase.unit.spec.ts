@@ -1,13 +1,13 @@
-import { User } from "../../../../src/modules/accounts/entities/User";
-import IMatchRepository from "../../../../src/modules/matches/repository/IMatchRepository";
-import MatchRepository from "../../../../src/modules/matches/repository/implementations/MatchRepository";
-import NumberOfMatchesError from "../../../../src/modules/stats/useCases/numberOfMatches/errors/NumberOfMatchesError";
-import NumberOfMatchesUseCase from "../../../../src/modules/stats/useCases/numberOfMatches/NumberOfMatchesUseCase";
-import { numberOfMatchesMock } from "../../../mocks/stats/statusMock";
+import { User } from "../../../../../src/modules/accounts/entities/User";
+import IMatchRepository from "../../../../../src/modules/matches/repository/IMatchRepository";
+import MatchRepository from "../../../../../src/modules/matches/repository/implementations/MatchRepository";
+import NumberOfMatchesError from "../../../../../src/modules/stats/useCases/numberOfMatches/errors/NumberOfMatchesError";
+import NumberOfMatchesUseCase from "../../../../../src/modules/stats/useCases/numberOfMatches/NumberOfMatchesUseCase";
+import { numberOfMatchesMock } from "../../../../mocks/stats/statusMock";
 import {
   returnUserMock,
   returnUserWithTeamMock,
-} from "../../../mocks/user/userMocks";
+} from "../../../../mocks/user/userMocks";
 
 describe("number of matches use case tests suit", () => {
   const repository: IMatchRepository = new MatchRepository();

@@ -26,4 +26,10 @@ const returnMatchMock = jest.fn().mockReturnValue({
 
 const matchDoesNotExistsMock = jest.fn().mockReturnValue(null);
 
-export { returnMatchMock, matchDoesNotExistsMock };
+const matchesResultsMock = jest
+  .fn()
+  .mockReturnValueOnce(17)
+  .mockReturnValueOnce(5)
+  .mockReturnValueOnce(2);
+
+export { returnMatchMock, matchDoesNotExistsMock, matchesResultsMock };

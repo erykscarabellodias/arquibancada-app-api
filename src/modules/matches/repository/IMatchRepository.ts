@@ -1,12 +1,11 @@
 import { User } from "../../accounts/entities/User";
-import Player from "../../players/entites/Player";
 import Stadium from "../../stadiums/entites/Stadium";
+import WinDrawAndLossOutputDto from "../../stats/useCases/winsDrawsAndLossesUseCase/dto/WinsDrawsAndLossesOutputDto";
 import { Team } from "../../teams/entities/Team";
 import Tournament from "../../tournament/entities/Tournament";
 import Match from "../entities/Match";
 import FieldCommand from "../registerMatch/enums/FieldCommand";
 import Result from "../registerMatch/enums/Result";
-import ScorersExistsValidator from "../registerMatch/validators/ScorersExistsValidator";
 
 export default interface IMatchRepository {
   findBySeasonTournamentCommandOpponentAndUser(
@@ -31,4 +30,6 @@ export default interface IMatchRepository {
   ): Promise<Match>;
 
   countMatchesByUserId(userId: string): Promise<number>;
+
+  countResultsByUserId(userId: string, result: Result): Promise<number>;
 }
