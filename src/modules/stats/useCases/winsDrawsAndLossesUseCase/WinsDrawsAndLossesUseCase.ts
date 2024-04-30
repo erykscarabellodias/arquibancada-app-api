@@ -4,7 +4,7 @@ import IMatchRepository from "../../../matches/repository/IMatchRepository";
 import WinDrawAndLossOutputDto from "./dto/WinsDrawsAndLossesOutputDto";
 import WinsDrawsAndLossesError from "./errors/WinsDrawsAndLossesError";
 
-export default class WinDrawAndLossUseCase {
+export default class WinsDrawsAndLossesUseCase {
   constructor(private readonly matchRepository: IMatchRepository) {}
 
   async execute(user: User): Promise<WinDrawAndLossOutputDto> {

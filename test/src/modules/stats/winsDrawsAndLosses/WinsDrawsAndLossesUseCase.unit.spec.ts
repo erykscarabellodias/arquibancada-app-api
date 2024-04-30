@@ -1,6 +1,6 @@
 import { User } from "../../../../../src/modules/accounts/entities/User";
 import MatchRepository from "../../../../../src/modules/matches/repository/implementations/MatchRepository";
-import WinDrawAndLossUseCase from "../../../../../src/modules/stats/useCases/winsDrawsAndLossesUseCase/WinsDrawsAndLossesUseCase";
+import WinsDrawsAndLossesUseCase from "../../../../../src/modules/stats/useCases/winsDrawsAndLossesUseCase/WinsDrawsAndLossesUseCase";
 import WinsDrawsAndLossesError from "../../../../../src/modules/stats/useCases/winsDrawsAndLossesUseCase/errors/WinsDrawsAndLossesError";
 import {
   matchDoesNotExistsMock,
@@ -14,7 +14,7 @@ import {
 
 describe("wins, draws and losses use case unit tests suit", () => {
   const repository = new MatchRepository();
-  const useCase = new WinDrawAndLossUseCase(repository);
+  const useCase = new WinsDrawsAndLossesUseCase(repository);
 
   it("should not to be able to find results without a user", async () => {
     let user: User;
