@@ -1,8 +1,8 @@
-import { app } from "../../../../../src/app";
-import { prepareDatabase } from "../../../../shared/prepareDatabase";
+import { app } from "../../../../../../src/app";
+import { prepareDatabase } from "../../../../../shared/prepareDatabase";
 import { DataSource } from "typeorm";
-import createDefaultUserAndGenerateJwtToken from "../../../../shared/authentication/createDefaultUserAndGenerateJwtToken";
-import { dropDatabase } from "../../../../shared/dropDatabase";
+import createDefaultUserAndGenerateJwtToken from "../../../../../shared/authentication/createDefaultUserAndGenerateJwtToken";
+import { dropDatabase } from "../../../../../shared/dropDatabase";
 import request from "supertest";
 
 describe("create player integration tests suit", () => {

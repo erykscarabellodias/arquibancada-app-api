@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { ILike, Repository } from "typeorm";
 import { CreatePlayerInputDto } from "../../../useCases/createPlayer/dto/CreatePlayerInputDto";
 import Player from "../../Player";
 import IPlayerRepository from "../IPlayerRepository";
@@ -34,5 +34,18 @@ export default class PlayerRepository implements IPlayerRepository {
 
   async findById(id: string): Promise<Player | null> {
     return this.repository.findOneBy({ id });
+  }
+
+  async findByNicknameOrName(nicknameOrName: string): Promise<Player[] | null> {
+    return this.repository.find({
+      where: [
+        {
+          complete_name: ILike(`%${nicknameOrName}%`),
+        },
+        {
+          nickname: ILike(`%${nicknameOrName}%`),
+        },
+      ],
+    });
   }
 }

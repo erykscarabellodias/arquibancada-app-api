@@ -1,14 +1,14 @@
-import Player from "../../../../../src/modules/players/entites/Player";
-import IPlayerRepository from "../../../../../src/modules/players/entites/repository/IPlayerRepository";
-import PlayerRepository from "../../../../../src/modules/players/entites/repository/implementations/PlayerRepository";
-import { CreatePlayerError } from "../../../../../src/modules/players/errors/CreatePlayerError";
-import CreatePlayerUseCase from "../../../../../src/modules/players/useCases/createPlayer/CreatePlayerUseCase";
-import { CreatePlayerInputDto } from "../../../../../src/modules/players/useCases/createPlayer/dto/CreatePlayerInputDto";
-import ClassValidatorValidationError from "../../../../../src/shared/errors/classValidator/ClassValidatorValidationError";
+import Player from "../../../../../../src/modules/players/entites/Player";
+import IPlayerRepository from "../../../../../../src/modules/players/entites/repository/IPlayerRepository";
+import PlayerRepository from "../../../../../../src/modules/players/entites/repository/implementations/PlayerRepository";
+import { CreatePlayerError } from "../../../../../../src/modules/players/errors/CreatePlayerError";
+import CreatePlayerUseCase from "../../../../../../src/modules/players/useCases/createPlayer/CreatePlayerUseCase";
+import { CreatePlayerInputDto } from "../../../../../../src/modules/players/useCases/createPlayer/dto/CreatePlayerInputDto";
+import ClassValidatorValidationError from "../../../../../../src/shared/errors/classValidator/ClassValidatorValidationError";
 import {
   playerDontExistsMock,
   playerMock,
-} from "../../../../mocks/player/playerMocks";
+} from "../../../../../mocks/player/playerMocks";
 
 describe("create player use case tests suit", () => {
   const repository: IPlayerRepository = new PlayerRepository();
