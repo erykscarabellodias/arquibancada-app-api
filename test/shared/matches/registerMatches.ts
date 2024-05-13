@@ -146,4 +146,4 @@ const createPlayers = async (): Promise<Player[]> => {
   return [createdGil, createdYuri, createdWesley, createdDanilo];
 };
 
-export { registerMatches };
+export { registerMatches, createPlayers };
