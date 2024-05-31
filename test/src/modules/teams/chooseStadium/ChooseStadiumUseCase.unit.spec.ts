@@ -13,7 +13,7 @@ import {
 } from "../../../../mocks/stadium/stadiumMocks";
 import {
   chooseStadiumMock,
-  returnTeamMock,
+  returnNationalTeamMock,
   teamDoesNotExist,
 } from "../../../../mocks/teams/teamsMocks";
 
@@ -34,6 +34,7 @@ describe("choose team use case tests suit", () => {
       created_at: new Date(),
       users: [],
       matchesAsOpponent: [],
+      isForeigner: false,
       stadium: {
         id: "97c929f8-542d-45fa-bbdb-23fd63e2fee8",
         name: "Neo Química Arena",
@@ -62,6 +63,7 @@ describe("choose team use case tests suit", () => {
       users: [],
       stadium: null,
       matchesAsOpponent: [],
+      isForeigner: false,
     },
   };
 
@@ -88,7 +90,7 @@ describe("choose team use case tests suit", () => {
   );
 
   it("should be able to choose a stadium to the user team", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     teamRepository.chooseStadium = chooseStadiumMock;
     stadiumRepository.findById = createdStadiumMock;
 
@@ -103,7 +105,7 @@ describe("choose team use case tests suit", () => {
   });
 
   it("should not be able to choose another stadium for a team", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     stadiumRepository.findById = stadiumDoesNotExistsMock;
 
     const dto: ChooseStadiumInputDto = {
@@ -119,7 +121,7 @@ describe("choose team use case tests suit", () => {
   });
 
   it("should not be able to choose a stadium if user do not have a team", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     stadiumRepository.findById = stadiumDoesNotExistsMock;
 
     const dto: ChooseStadiumInputDto = {
@@ -135,7 +137,7 @@ describe("choose team use case tests suit", () => {
   });
 
   it("should not be able to choose an invalid stadium", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     stadiumRepository.findById = stadiumDoesNotExistsMock;
 
     const dto: ChooseStadiumInputDto = {

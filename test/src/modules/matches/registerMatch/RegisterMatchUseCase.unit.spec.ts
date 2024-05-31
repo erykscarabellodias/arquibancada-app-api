@@ -13,7 +13,7 @@ import { returnMatchMock } from "../../../../mocks/match/matchMocks";
 import { matchScorerRegistered } from "../../../../mocks/matchScorers/matchScorersMock";
 import { playerMock } from "../../../../mocks/player/playerMocks";
 import { createdStadiumMock } from "../../../../mocks/stadium/stadiumMocks";
-import { returnTeamMock } from "../../../../mocks/teams/teamsMocks";
+import { returnNationalTeamMock } from "../../../../mocks/teams/teamsMocks";
 import { createdTournament } from "../../../../mocks/tournament/tournamentMocks";
 import { returnUserWithTeamMock } from "../../../../mocks/user/userMocks";
 
@@ -44,10 +44,10 @@ describe("register match use case unit tests suit", () => {
   it("should be able to register a match without scorers", async () => {
     matchRepository.create = returnMatchMock;
     playerRepository.findById = playerMock;
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     tournamentRepository.findById = createdTournament;
     stadiumRepository.findById = createdStadiumMock;
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     matchScorerRepository.registerMatchScorer = matchScorerRegistered;
 
     const otherDto: RegisterMatchInputDto = {
@@ -71,10 +71,10 @@ describe("register match use case unit tests suit", () => {
   it("should to be able to register a match", async () => {
     matchRepository.create = returnMatchMock;
     playerRepository.findById = playerMock;
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     tournamentRepository.findById = createdTournament;
     stadiumRepository.findById = createdStadiumMock;
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     matchScorerRepository.registerMatchScorer = matchScorerRegistered;
 
     const dto: RegisterMatchInputDto = {

@@ -5,8 +5,10 @@ export default class CreateTeamOutputDto {
     this.id = team.id;
     this.complete_name = team.complete_name;
     this.nickname = team.nickname;
-    this.state = team.state;
+    this.state = team.state!;
     this.city = team.city;
+    this.country = team.country!;
+    this.isForeigner = team.isForeigner;
   }
 
   id: string;
@@ -14,4 +16,6 @@ export default class CreateTeamOutputDto {
   nickname: string;
   state: string;
   city: string;
+  country: string;
+  isForeigner: boolean;
 }

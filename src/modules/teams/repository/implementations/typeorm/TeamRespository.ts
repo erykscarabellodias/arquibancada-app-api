@@ -20,20 +20,20 @@ export class TeamRepository implements ITeamRepository {
       nickname: createTeamDto.nickname,
       city: createTeamDto.city,
       state: createTeamDto.state,
+      isForeigner: createTeamDto.isForeigner,
+      country: createTeamDto.country,
     });
   }
 
   async checkIfExists(
     complete_name: string,
     nickname: string,
-    state: string,
     city: string
   ): Promise<boolean> {
     const team = await this.repository.findOne({
       where: {
         complete_name,
         nickname,
-        state,
         city,
       },
     });

@@ -26,6 +26,7 @@ describe("create team controller integration tests suit", () => {
       nickname: "Corinthians",
       city: "São Paulo",
       state: "São Paulo",
+      isForeigner: false,
     };
 
     const response = await request(app)
@@ -48,6 +49,7 @@ describe("create team controller integration tests suit", () => {
       nickname: "Corinthians",
       city: "São Paulo",
       state: "São Paulo",
+      isForeigner: false,
     };
 
     const response = await request(app)
@@ -66,6 +68,7 @@ describe("create team controller integration tests suit", () => {
       nickname: "Corinthians",
       city: "São Paulo",
       state: "São Paulo",
+      isForeigner: false,
     };
 
     const response = await request(app).post("/teams").send(userAlreadyExists);
@@ -78,17 +81,17 @@ describe("create team controller integration tests suit", () => {
       {
         nickname: "Corinthians",
         city: "São Paulo",
-        state: "São Paulo",
+        isForeigner: false,
       },
       {
         complete_name: "Sport Club Corinthians Paulista",
         city: "São Paulo",
-        state: "São Paulo",
+        isForeigner: false,
       },
       {
         complete_name: "Sport Club Corinthians Paulista",
         nickname: "Corinthians",
-        state: "São Paulo",
+        isForeigner: false,
       },
       {
         complete_name: "Sport Club Corinthians Paulista",

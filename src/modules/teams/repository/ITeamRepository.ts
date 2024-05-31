@@ -8,7 +8,6 @@ export interface ITeamRepository {
   checkIfExists(
     complete_name: string,
     nickname: string,
-    state: string,
     city: string
   ): Promise<boolean>;
 

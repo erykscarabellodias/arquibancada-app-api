@@ -18,6 +18,7 @@ describe("check if user have a team service unit tests suit", () => {
         nickname: "Corinthians",
         city: "São Paulo",
         state: "São Paulo",
+        isForeigner: false,
         created_at: new Date(),
         users: [],
         stadium: null,

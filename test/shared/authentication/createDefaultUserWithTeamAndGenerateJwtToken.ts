@@ -24,6 +24,7 @@ const createDefaultUserWithTeamAndGenerateJwtToken =
       nickname: "Corinthians",
       city: "São Paulo",
       state: "São Paulo",
+      isForeigner: false,
     });
 
     const createdUser = await userRepository.chooseTeam(user, team);

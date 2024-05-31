@@ -23,10 +23,16 @@ export class Team {
   nickname: string;
 
   @Column("varchar", { length: 100 })
-  state: string;
+  state?: string;
 
-  @Column("varchar", { length: 100 })
+  @Column("varchar", { length: 100, nullable: true })
   city: string;
+
+  @Column("varchar", { length: 100, nullable: true })
+  country?: string;
+
+  @Column("boolean")
+  isForeigner: boolean;
 
   @Column()
   created_at: Date;

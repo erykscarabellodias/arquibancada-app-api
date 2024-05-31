@@ -10,6 +10,7 @@ const createTeams = async (): Promise<Team[]> => {
     nickname: "Corinthians",
     city: "São Paulo",
     state: "São Paulo",
+    isForeigner: false,
   };
 
   const coritiba: CreateTeamInputDto = {
@@ -17,6 +18,7 @@ const createTeams = async (): Promise<Team[]> => {
     nickname: "Coritiba",
     city: "Curitiba",
     state: "Paraná",
+    isForeigner: false,
   };
 
   const figueirense: CreateTeamInputDto = {
@@ -24,6 +26,7 @@ const createTeams = async (): Promise<Team[]> => {
     nickname: "Figueirense",
     city: "Florianópolis",
     state: "Santa Catarina",
+    isForeigner: false,
   };
 
   const redBull: CreateTeamInputDto = {
@@ -31,6 +34,7 @@ const createTeams = async (): Promise<Team[]> => {
     nickname: "Red Bull Bragantino",
     city: "Bragança Paulista",
     state: "São Paulo",
+    isForeigner: false,
   };
 
   const createdCorinthians = await teamRepository.create(corinthians);

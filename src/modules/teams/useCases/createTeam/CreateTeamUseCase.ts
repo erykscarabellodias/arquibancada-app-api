@@ -5,7 +5,6 @@ import CreateTeamOutputDto from "./dto/CreateTeamOutputDto";
 import { plainToClass } from "class-transformer";
 import ClassValidatorValidationError from "../../../../shared/errors/classValidator/ClassValidatorValidationError";
 import CreateTeamError from "../../errors/CreateTeamError";
-import { Team } from "../../entities/Team";
 
 export class CreateTeamUseCase {
   private repository: ITeamRepository;
@@ -25,12 +24,20 @@ export class CreateTeamUseCase {
       throw new ClassValidatorValidationError(requestDataErrors);
     }
 
-    const { complete_name, nickname, city, state } = createTeamDto;
+    const { complete_name, nickname, city, state, country, isForeigner } =
+      createTeamDto;
+
+    if (!isForeigner && !state) {
+      throw new CreateTeamError("Um time nacional precisa de um estado");
+    }
+
+    if (isForeigner && !country) {
+      throw new CreateTeamError("Um time estrangeiro precisa de um país");
+    }
 
     const teamAlreadyExists = await this.repository.checkIfExists(
       complete_name,
       nickname,
-      state,
       city
     );
 

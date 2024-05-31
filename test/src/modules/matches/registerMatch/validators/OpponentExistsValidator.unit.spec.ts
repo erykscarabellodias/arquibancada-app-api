@@ -5,7 +5,7 @@ import OpponentExistsValidator from "../../../../../../src/modules/matches/regis
 import { ITeamRepository } from "../../../../../../src/modules/teams/repository/ITeamRepository";
 import { TeamRepository } from "../../../../../../src/modules/teams/repository/implementations/typeorm/TeamRespository";
 import {
-  returnTeamMock,
+  returnNationalTeamMock,
   teamDoesNotExist,
 } from "../../../../../mocks/teams/teamsMocks";
 
@@ -50,7 +50,7 @@ describe("opponent exists integration validator", () => {
   });
 
   it("should be able to select an existent opponent", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
 
     await opponentExistsValidator.validate(dto);
 

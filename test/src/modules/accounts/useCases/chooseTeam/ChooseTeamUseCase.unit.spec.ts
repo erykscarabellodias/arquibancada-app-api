@@ -5,7 +5,7 @@ import ChooseTeamError from "../../../../../../src/modules/accounts/useCases/cho
 import { UserOutputDto } from "../../../../../../src/modules/accounts/useCases/createUser/dto/UserOutputDto";
 import { TeamRepository } from "../../../../../../src/modules/teams/repository/implementations/typeorm/TeamRespository";
 import {
-  returnTeamMock,
+  returnNationalTeamMock,
   teamDoesNotExist,
 } from "../../../../../mocks/teams/teamsMocks";
 import { returnUserWithTeamMock } from "../../../../../mocks/user/userMocks";
@@ -42,11 +42,12 @@ describe("choose team unit tests suit", () => {
       users: [],
       stadium: null,
       matchesAsOpponent: [],
+      isForeigner: false,
     },
   };
 
   it("should be able to choose a team", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
     userRepository.chooseTeam = returnUserWithTeamMock;
 
     const userWithTeam = await useCase.execute({
@@ -71,7 +72,7 @@ describe("choose team unit tests suit", () => {
   });
 
   it("should not be able to choose a team twice", async () => {
-    teamRepository.findById = returnTeamMock;
+    teamRepository.findById = returnNationalTeamMock;
 
     expect(async () => {
       await useCase.execute({
